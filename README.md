@@ -9,6 +9,10 @@ This is a JAVA desktop application designed to serve as a stock manager for smal
   * Sale products and issue receipt 
   * Issue dayly and period based reports (in pdf)
 
+### Demo
+
+https://user-images.githubusercontent.com/55330862/110791847-5c88f580-827b-11eb-8941-cb5e37a34974.mp4
+
 ### Important Dependencies/Libraries
 
   * JasperReports 
