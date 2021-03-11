@@ -9,14 +9,14 @@ This is a JAVA desktop application designed to serve as a stock manager for smal
   * Sale products and issue receipt 
   * Issue dayly and period based reports (in pdf)
 
-### Important Dependencies/Libraries User
+### Important Dependencies/Libraries
 
   * JasperReports 
   * SQLite JDBC
   * JCalender 
   * and more...
 
-### Executing program
+### Executing the program
 
 The program was developed via Netbeans, so it can be opened and built as a project in this IDEA considering that:
 
