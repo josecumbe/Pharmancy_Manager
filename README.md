@@ -11,7 +11,7 @@ This is a JAVA desktop application designed to serve as a stock manager for smal
 
 ### Demo
 
-https://user-images.githubusercontent.com/55330862/110791847-5c88f580-827b-11eb-8941-cb5e37a34974.mp4
+![far-demo](https://user-images.githubusercontent.com/55330862/110792504-2a2bc800-827c-11eb-8f12-e885f94f0574.gif)
 
 ### Important Dependencies/Libraries
 
