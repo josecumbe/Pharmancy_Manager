@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f95ad00-89d4-4c94-9245-16d7183dc3a7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="80"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT order_details.quantity AS Quantidade, order_details.total_price AS Preço_Total, stock.unit_sell_price AS Preço_Unidade, drug.comercial_name AS Nome, users.name AS Vendedor, order_sell.date AS Data
+
+FROM order_details
+    INNER JOIN order_sell ON order_details.order_id = order_sell.order_id
+    INNER JOIN stock ON  order_details.stock_id= stock.stock_id
+    INNER JOIN drug ON stock.drug_id= drug.drug_id
+    INNER JOIN users ON order_sell.user_id=users.user_id]]>
+	</queryString>
+	<field name="Quantidade" class="java.lang.Object"/>
+	<field name="Preço_Total" class="java.lang.Object"/>
+	<field name="Preço_Unidade" class="java.lang.Object"/>
+	<field name="Nome" class="java.lang.Object"/>
+	<field name="Vendedor" class="java.lang.Object"/>
+	<field name="Data" class="java.lang.Object"/>
+	<variable name="SumVendas" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Preço_Total}]]></variableExpression>
+	</variable>
+	<group name="Nome">
+		<groupExpression><![CDATA[$F{Nome}]]></groupExpression>
+	</group>
+	<group name="Quantidade">
+		<groupExpression><![CDATA[$F{Quantidade}]]></groupExpression>
+	</group>
+	<group name="Preço_Unidade">
+		<groupExpression><![CDATA[$F{Preço_Unidade}]]></groupExpression>
+	</group>
+	<group name="Preço_Total">
+		<groupExpression><![CDATA[$F{Preço_Total}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="29" forecolor="#006666" uuid="4e1669cd-03b9-4caf-8b08-f58fa9df6a2a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FARMÁCIA VILAS DO POVO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" forecolor="#006666" uuid="6ed0e924-1bf3-44e9-8ada-d2501c55e6ec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório De Vendas]]></text>
+			</staticText>
+			<textField pattern="yyyy-M-d">
+				<reportElement x="0" y="47" width="555" height="20" uuid="f1196ea5-eb95-4471-97a7-3deb1bb3f3c0"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="20" width="32" height="20" uuid="7297633e-ed00-40d1-9f74-27bd33ac4d2e"/>
+				<text><![CDATA[N.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="155" y="20" width="80" height="20" uuid="f9fe9825-7d41-4caa-8783-c020dd69d1e4"/>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="235" y="20" width="80" height="20" uuid="09a31fe7-bde3-4510-b3dd-89af65c412f0"/>
+				<text><![CDATA[Pre./Unidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="20" width="80" height="20" uuid="6cd56ff3-5210-4321-9875-ed21b5d572da"/>
+				<text><![CDATA[Pre. Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="20" width="80" height="20" uuid="40efe8a3-a9bc-48e5-afe3-70bec36fa094"/>
+				<text><![CDATA[Vendedor]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="49" width="555" height="1" uuid="cbe76ebf-c443-4afb-895b-714f31b52968"/>
+				<graphicElement>
+					<pen lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="475" y="20" width="80" height="20" uuid="45d75eb4-299a-4bed-af0a-c53719a8fefb"/>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="20" width="100" height="20" uuid="14d42283-4eba-4186-8ad6-18336da6f7c6"/>
+				<text><![CDATA[Medicamento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="32" height="20" uuid="20cf0e3b-78b9-42f9-98d7-20457b0ee92f"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="41" y="0" width="103" height="20" uuid="f0b577ca-0dc8-471f-ac28-489571b24059"/>
+				<textFieldExpression><![CDATA[""+$F{Nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="155" y="0" width="66" height="20" uuid="ca17af6c-180c-434b-a4fd-f8349d0270d4"/>
+				<textFieldExpression><![CDATA[""+$F{Quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="0" width="80" height="20" uuid="dcb74f4c-a574-4720-b61d-6622b72ffc3b"/>
+				<textFieldExpression><![CDATA[""+$F{Preço_Unidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="315" y="0" width="80" height="20" uuid="b9856757-756b-4c6c-aac0-293330c78d94"/>
+				<textFieldExpression><![CDATA[""+$F{Preço_Total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="395" y="0" width="80" height="20" uuid="80aa8924-9e47-43fe-a6a9-e55799478f7c"/>
+				<textFieldExpression><![CDATA[""+$F{Vendedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="0" width="80" height="20" uuid="9124ae95-aee3-4cd7-9324-4223f3efa220"/>
+				<textFieldExpression><![CDATA[""+$F{Data}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="74" splitType="Stretch">
+			<textField>
+				<reportElement x="531" y="54" width="24" height="20" uuid="52b9d270-cc35-48b1-b3e9-2637bdd979b9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="463" y="54" width="68" height="20" uuid="045f2e94-ff01-4b48-8d02-1dae25a34c5b"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Pag.]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="100" height="20" uuid="fb99e1a9-6cab-4a67-b9f5-826d206ab0b9"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Em Vendas]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0">
+				<reportElement x="475" y="6" width="80" height="20" uuid="c63ce34c-7617-4506-a385-9125688b7fe8"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SumVendas}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="83306509-0967-437c-b338-67cd07f9e539"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>
