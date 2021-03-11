@@ -1,6 +1,6 @@
 # Pharmancy Manager System
 
-This is a JAVA desktop application designed to serve as a stock manager for small and medium-sized pharmacies.note that the program was developed for a specific context, which is why the interface language is Portuguese.
+This is a JAVA desktop application designed to serve as a stock manager for small and medium-sized pharmacies. Note that the program was developed for a specific context, which is why the interface language is Portuguese.
 
 ### Main Fuctionalities
 
